@@ -28,6 +28,7 @@ defaultItemType = 'journalArticle'
 
 # Variables
 collectionId = 'AACFPRMA'
+pdfApp = 'okular'
 
 zot = zotero.Zotero(340810, 'group', 'KNAt5LsFJvWquBhywDpNtsv0')
 collections = zot.all_collections(collectionId)
@@ -127,14 +128,14 @@ for collection in collections:
 
                 if newItem is None:
                     # display the pdf
-                    okularProcess = subprocess.Popen(['okular', './temp/ocr.pdf'],
+                    displayPdfProcess = subprocess.Popen([pdfApp, './temp/ocr.pdf'],
                                                      stdout=subprocess.PIPE,
                                                      stderr=subprocess.PIPE)
                     # let the user input the title of the pdf
                     title = simpledialog.askstring(title="Title",
                                                    prompt="Document Title")
                     # close the pdf
-                    okularProcess.kill()
+                    displayPdfProcess.kill()
 
                     if not title:
                         skipp_item(item)
@@ -219,13 +220,13 @@ for collection in collections:
                 print(newItem)
                 if len(match) == 0:
                     # of the sanity check did not succeeded we display the pdf again
-                    okularProcess = subprocess.Popen(['okular', './temp/original.pdf'],
+                    displayPdfProcess = subprocess.Popen([pdfApp, './temp/original.pdf'],
                                                      stdout=subprocess.PIPE,
                                                      stderr=subprocess.PIPE)
                     # let the user decide if the item should be saved
                     print("No match found! continue? (y/N)")
                     answer = input()
-                    okularProcess.kill()
+                    displayPdfProcess.kill()
                     if answer.lower() != "y":
                         skipp_item(item)
                         continue
