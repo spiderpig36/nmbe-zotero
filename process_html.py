@@ -9,7 +9,6 @@ def table_to_row(table):
 def process_html(url, params):
     result = requests.get(url, params)
     soup = BeautifulSoup(result.text, 'html.parser')
-
     tables = soup.find_all("table", {"class": "ucdRefTable"})
     rows = list(map(table_to_row, tables))
 
