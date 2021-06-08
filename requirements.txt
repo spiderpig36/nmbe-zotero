@@ -19,7 +19,7 @@ lxml==4.5.1
 olefile==0.46
 pathlib==1.0.1
 pdfminer.six==20181108
-Pillow==7.1.2
+Pillow==8.2.0
 pycryptodome==3.9.8
 pyparsing==2.4.7
 python-pptx==0.6.18
